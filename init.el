@@ -1,5 +1,8 @@
 (custom-set-variables '(show-paren-mode t))
 
+(setq default-major-mode 'text-mode)
+(add-hook 'text-mode-hook (lambda ( ) (refill-mode 1)))
+
 (when (>= emacs-major-version 24)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
