@@ -23,3 +23,5 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/undo-tree-20140110.616")
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+(setq-default ispell-program-name "aspell")
