@@ -1,7 +1,12 @@
-(custom-set-variables '(show-paren-mode t))
+(custom-set-variables
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
 
 ;;(setq default-major-mode 'text-mode)
 ;;(add-hook 'text-mode-hook (lambda ( ) (refill-mode 1)))
+
+(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
 (when (>= emacs-major-version 24)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
