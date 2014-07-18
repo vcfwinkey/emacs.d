@@ -6,17 +6,24 @@
 ;;(setq default-major-mode 'text-mode)
 ;;(add-hook 'text-mode-hook (lambda ( ) (refill-mode 1)))
 
-(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
+;; Default display line number
+(global-line-number 1);always show line number
+(setq linum-format "%d| ");set format
 
+;; Set invisible password inputing
+(add-hook 'comint-output-filter-functions 
+    'comint-watch-for-password-prompt)
+
+;; Add package archives for version 24
 (when (>= emacs-major-version 24)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 )
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (if (eq system-type 'window-nt)
-    (defconst emacs-tmp-dir (format "f:/%s/" "temp"))
+    (defconst emacs-tmp-dir (format "f:\%s\" "temp"))
   (defconst emacs-tmp-dir (format "~/%s/" "temp")))
 (setq backup-directory-alist
     `((".*" . ,emacs-tmp-dir)))
@@ -25,8 +32,10 @@
 (setq auto-save-list-file-prefix
     emacs-tmp-dir)
 
+;; Add undo tree
 (add-to-list 'load-path "~/.emacs.d/elpa/undo-tree-20140110.616")
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+;; Use aspell as default ispell
 (setq-default ispell-program-name "aspell")
