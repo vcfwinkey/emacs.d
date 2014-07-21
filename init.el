@@ -1,3 +1,5 @@
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+
 (custom-set-variables
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -7,8 +9,8 @@
 ;;(add-hook 'text-mode-hook (lambda ( ) (refill-mode 1)))
 
 ;; Default display line number
-(global-line-number 1);always show line number
-(setq linum-format "%d| ");set format
+(global-linum-mode 1)
+(setq linum-format "%d")
 
 ;; Set invisible password inputing
 (add-hook 'comint-output-filter-functions 
@@ -23,7 +25,7 @@
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (if (eq system-type 'window-nt)
-    (defconst emacs-tmp-dir (format "f:\%s\" "temp"))
+    (defconst emacs-tmp-dir (format "f:\\%s\\" "temp"))
   (defconst emacs-tmp-dir (format "~/%s/" "temp")))
 (setq backup-directory-alist
     `((".*" . ,emacs-tmp-dir)))
@@ -39,3 +41,5 @@
 
 ;; Use aspell as default ispell
 (setq-default ispell-program-name "aspell")
+
+(require 'init-macros)
